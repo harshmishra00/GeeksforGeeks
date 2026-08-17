@@ -3,16 +3,14 @@ class Solution {
   
     bool isValid(vector<int>&arr, int mid, int k){
         int last=arr[0];
-        int n=arr.size();
         int count=1;
-        for(int i=1;i<n;i++){
-            if(arr[i]-last>=mid){
+        for(int x:arr){
+            if(x-last>=mid){
                 count++;
-                last=arr[i];
+                last=x;
             }
-            if(count>=k) return true;
         }
-        return false;
+        return count>=k;
     }
     int aggressiveCows(vector<int> &arr, int k) {
         // code here
