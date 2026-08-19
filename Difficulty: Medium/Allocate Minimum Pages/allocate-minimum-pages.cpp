@@ -1,30 +1,29 @@
 class Solution {
   public:
-    bool isValid(vector<int>&nums,long long mid, long long k){
-        long long pages=0; long long student=1;
-        for(long long x:nums){
-            if(x+pages<=mid){
+  
+    bool isValid(long long mid, vector<int>&arr, int k){
+        long long pages=0;
+        int stud=1;
+        for(int x:arr){
+            if(pages+x<=mid){
                 pages+=x;
             }else{
-                student++;
                 pages=x;
+                stud++;
             }
         }
-        return student<=k; 
-            
+        return stud<=k;
     }
-    long long findPages(vector<int> &nums, int k) {
-        if(nums.size()<k) return -1;
+    int findPages(vector<int> &arr, int k) {
+        if(arr.size()<k) return -1;
+        long long left=*max_element(arr.begin(),arr.end());
+        long long right=accumulate(arr.begin(),arr.end(),0LL);
         long long ans=-1;
-        // code here
-        long long left=*max_element(nums.begin(),nums.end());
-        long long right=0;
-        for(long long x:nums){
-            right+=x;
-        }
+        
         while(left<=right){
             long long mid=left+(right-left)/2;
-            if(isValid(nums,mid,k)){
+            
+            if(isValid(mid,arr,k)){
                 ans=mid;
                 right=mid-1;
             }else{
