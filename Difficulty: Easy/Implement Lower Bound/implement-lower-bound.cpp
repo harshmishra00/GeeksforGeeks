@@ -1,15 +1,14 @@
 class Solution {
   public:
-    int lowerBound(vector<int>& nums, int x) {
-        int n=nums.size();
+    int lowerBound(vector<int>& arr, int target) {
         int left=0;
-        int right=n-1;
-        int ans=n;
+        int right=arr.size();
+        int ans=arr.size();
         
         while(left<=right){
             int mid=left+(right-left)/2;
             
-            if(nums[mid]>=x){
+            if(arr[mid]>=target){
                 ans=mid;
                 right=mid-1;
             }else{
@@ -17,5 +16,6 @@ class Solution {
             }
         }
         return ans;
+        
     }
 };
